@@ -1,20 +1,20 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { lazy, Suspense } from 'react'
-import Layout from '../components/layout/Layout'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import Layout from "../components/Layout/Layout";
 
 /**
  * Все страницы грузятся лениво (lazy) — меньше начальный бандл.
  * Suspense показывает минимальный спиннер пока страница загружается.
  */
-const Home         = lazy(() => import('../pages/Home'))
-const Shop         = lazy(() => import('../pages/Shop'))
-const ProductDetail= lazy(() => import('../pages/ProductDetail'))
-const Cart         = lazy(() => import('../pages/Cart'))
-const Checkout     = lazy(() => import('../pages/Checkout'))
-const BlogList     = lazy(() => import('../pages/BlogList'))
-const BlogDetail   = lazy(() => import('../pages/BlogDetail'))
-const FAQ          = lazy(() => import('../pages/FAQ'))
-const NotFound     = lazy(() => import('../pages/NotFound'))
+const Home = lazy(() => import("../pages/Home"));
+const Shop = lazy(() => import("../pages/Shop"));
+const ProductDetail = lazy(() => import("../pages/ProductDetail"));
+const Cart = lazy(() => import("../pages/Cart"));
+const Checkout = lazy(() => import("../pages/Checkout"));
+const BlogList = lazy(() => import("../pages/BlogList"));
+const BlogDetail = lazy(() => import("../pages/BlogDetail"));
+const FAQ = lazy(() => import("../pages/FAQ"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 // Простой fallback на время загрузки страницы
 function PageLoader() {
@@ -22,27 +22,90 @@ function PageLoader() {
     <div className="flex items-center justify-center min-h-[50vh]">
       <div className="w-8 h-8 border-2 border-[#E44B26] border-t-transparent rounded-full animate-spin" />
     </div>
-  )
+  );
 }
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
-      { index: true,              element: <Suspense fallback={<PageLoader />}><Home /></Suspense> },
-      { path: 'shop',             element: <Suspense fallback={<PageLoader />}><Shop /></Suspense> },
-      { path: 'product/:id',      element: <Suspense fallback={<PageLoader />}><ProductDetail /></Suspense> },
-      { path: 'cart',             element: <Suspense fallback={<PageLoader />}><Cart /></Suspense> },
-      { path: 'checkout',         element: <Suspense fallback={<PageLoader />}><Checkout /></Suspense> },
-      { path: 'blog',             element: <Suspense fallback={<PageLoader />}><BlogList /></Suspense> },
-      { path: 'blog/:id',         element: <Suspense fallback={<PageLoader />}><BlogDetail /></Suspense> },
-      { path: 'faq',              element: <Suspense fallback={<PageLoader />}><FAQ /></Suspense> },
-      { path: '*',                element: <Suspense fallback={<PageLoader />}><NotFound /></Suspense> },
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: "shop",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Shop />
+          </Suspense>
+        ),
+      },
+      {
+        path: "product/:id",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProductDetail />
+          </Suspense>
+        ),
+      },
+      {
+        path: "cart",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Cart />
+          </Suspense>
+        ),
+      },
+      {
+        path: "checkout",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Checkout />
+          </Suspense>
+        ),
+      },
+      {
+        path: "blog",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <BlogList />
+          </Suspense>
+        ),
+      },
+      {
+        path: "blog/:id",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <BlogDetail />
+          </Suspense>
+        ),
+      },
+      {
+        path: "faq",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <FAQ />
+          </Suspense>
+        ),
+      },
+      {
+        path: "*",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <NotFound />
+          </Suspense>
+        ),
+      },
     ],
   },
-])
+]);
 
 export default function AppRouter() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }
