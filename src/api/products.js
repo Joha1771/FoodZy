@@ -1,5 +1,5 @@
 import axiosClient from "./axiosClient";
-import { buildSupabaseUrl } from "../utils/buildSupabaseQuery";
+import { buildSupabaseUrl } from "../Utils/buildSupabaseQuery";
 
 /**
  * Реальная схема таблицы products:

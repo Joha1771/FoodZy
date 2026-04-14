@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom'
-import { ShoppingCart } from 'lucide-react'
-import { useDeals } from '../../hooks/useProducts'
-import StarRating from '../ui/StarRating'
+import { Link } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
+import { useDeals } from "../../Hooks/useProducts";
+import StarRating from "../Ui/StarRating";
 
 // Статичные изображения для deals (если в БД нет image_url — используем дефолт)
-import deal1 from '../../assets/images/DealsOfTheDay1.png'
-import deal2 from '../../assets/images/DealsOfTheDay2.png'
-import deal3 from '../../assets/images/DealsOfTheDay3.png'
-import deal4 from '../../assets/images/DealsOfTheDay4.png'
+import deal1 from "../../assets/images/DealsOfTheDay1.png";
+import deal2 from "../../assets/images/DealsOfTheDay2.png";
+import deal3 from "../../assets/images/DealsOfTheDay3.png";
+import deal4 from "../../assets/images/DealsOfTheDay4.png";
 
-const FALLBACK_IMAGES = [deal1, deal2, deal3, deal4]
+const FALLBACK_IMAGES = [deal1, deal2, deal3, deal4];
 
 /**
  * Секция "Deals of the Day".
@@ -26,11 +26,11 @@ function SkeletonDeal() {
         <div className="h-3 bg-gray-100 rounded w-1/4" />
       </div>
     </div>
-  )
+  );
 }
 
 export default function DealsOfTheDay() {
-  const { data: deals = [], isLoading } = useDeals(4)
+  const { data: deals = [], isLoading } = useDeals(4);
 
   return (
     <section className="max-w-[1200px] mx-auto px-4 py-10">
@@ -59,11 +59,12 @@ export default function DealsOfTheDay() {
             ))}
       </div>
     </section>
-  )
+  );
 }
 
 function DealCard({ deal, fallbackImage }) {
-  const { id, name, price, old_price, image_url, rating, review_count, brand } = deal
+  const { id, name, price, old_price, image_url, rating, review_count, brand } =
+    deal;
 
   return (
     <Link
@@ -84,15 +85,15 @@ function DealCard({ deal, fallbackImage }) {
       {/* Информация поверх — появляется снизу */}
       <div className="bg-white p-3">
         {/* Название */}
-        <p className="text-sm font-medium text-gray-800 line-clamp-2 mb-1
-                      group-hover:text-[#E44B26] transition-colors">
+        <p
+          className="text-sm font-medium text-gray-800 line-clamp-2 mb-1
+                      group-hover:text-[#E44B26] transition-colors"
+        >
           {name}
         </p>
 
         {/* Бренд */}
-        {brand && (
-          <p className="text-xs text-gray-400 mb-1">By {brand}</p>
-        )}
+        {brand && <p className="text-xs text-gray-400 mb-1">By {brand}</p>}
 
         {/* Рейтинг */}
         <StarRating rating={rating} count={review_count} />
@@ -102,12 +103,17 @@ function DealCard({ deal, fallbackImage }) {
           <div>
             <span className="text-[#E44B26] font-bold text-sm">${price}</span>
             {old_price && (
-              <span className="text-gray-400 text-xs line-through ml-1">${old_price}</span>
+              <span className="text-gray-400 text-xs line-through ml-1">
+                ${old_price}
+              </span>
             )}
           </div>
 
           <button
-            onClick={(e) => { e.preventDefault(); e.stopPropagation() }}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
             className="flex items-center gap-1 bg-[#E44B26] hover:bg-[#c93f1e]
                        text-white text-xs px-3 py-1.5 rounded transition-colors"
             aria-label={`Add ${name} to cart`}
@@ -118,5 +124,5 @@ function DealCard({ deal, fallbackImage }) {
         </div>
       </div>
     </Link>
-  )
+  );
 }

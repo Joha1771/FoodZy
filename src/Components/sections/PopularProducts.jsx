@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { usePopularProducts } from "../../hooks/useProducts";
-import { useCategories } from "../../hooks/useCategories";
-import ProductCard from "../ui/ProductCard";
+import { usePopularProducts } from "../../Hooks/useProducts";
+import { useCategories } from "../../Hooks/useCategories";
+import ProductCard from "../Ui/ProductCard";
 
 /**
  * Секция Popular Products.

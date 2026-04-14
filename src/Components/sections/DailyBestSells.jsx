@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react'
-import { useDailyBestSells } from '../../hooks/useProducts'
-import Badge from '../ui/Badge'
-import StarRating from '../ui/StarRating'
-import dailyBestSellsImg from '../../assets/images/DailyBestSells-img.png'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
+import { useDailyBestSells } from "../../Hooks/useProducts";
+import Badge from "../Ui/Badge";
+import StarRating from "../Ui/StarRating";
+import dailyBestSellsImg from "../../assets/images/DailyBestSells-img.png";
 
 /**
  * Секция "Daily Best Sells".
@@ -13,7 +13,7 @@ import dailyBestSellsImg from '../../assets/images/DailyBestSells-img.png'
  * Табы: Featured / Popular / New added.
  */
 
-const TABS = ['Featured', 'Popular', 'New added']
+const TABS = ["Featured", "Popular", "New added"];
 
 // Скелетон для карточки товара в слайдере
 function SliderSkeleton() {
@@ -25,29 +25,29 @@ function SliderSkeleton() {
       <div className="h-3 bg-gray-100 rounded w-1/3 mb-3" />
       <div className="h-8 bg-gray-100 rounded" />
     </div>
-  )
+  );
 }
 
 export default function DailyBestSells() {
-  const [activeTab, setActiveTab] = useState('Featured')
+  const [activeTab, setActiveTab] = useState("Featured");
   // Смещение слайдера — индекс первого видимого элемента
-  const [sliderIndex, setSliderIndex] = useState(0)
+  const [sliderIndex, setSliderIndex] = useState(0);
 
-  const { data: products = [], isLoading } = useDailyBestSells(8)
+  const { data: products = [], isLoading } = useDailyBestSells(8);
 
   // Количество видимых карточек за раз
-  const VISIBLE = 4
+  const VISIBLE = 4;
 
   function slidePrev() {
-    setSliderIndex((i) => Math.max(0, i - 1))
+    setSliderIndex((i) => Math.max(0, i - 1));
   }
 
   function slideNext() {
-    setSliderIndex((i) => Math.min(products.length - VISIBLE, i + 1))
+    setSliderIndex((i) => Math.min(products.length - VISIBLE, i + 1));
   }
 
-  const canPrev = sliderIndex > 0
-  const canNext = sliderIndex < products.length - VISIBLE
+  const canPrev = sliderIndex > 0;
+  const canNext = sliderIndex < products.length - VISIBLE;
 
   return (
     <section className="max-w-[1200px] mx-auto px-4 py-10">
@@ -59,12 +59,16 @@ export default function DailyBestSells() {
           {TABS.map((tab) => (
             <button
               key={tab}
-              onClick={() => { setActiveTab(tab); setSliderIndex(0) }}
+              onClick={() => {
+                setActiveTab(tab);
+                setSliderIndex(0);
+              }}
               className={`
                 text-sm transition-colors
-                ${activeTab === tab
-                  ? 'text-[#E44B26] font-semibold'
-                  : 'text-gray-400 hover:text-gray-700'
+                ${
+                  activeTab === tab
+                    ? "text-[#E44B26] font-semibold"
+                    : "text-gray-400 hover:text-gray-700"
                 }
               `}
             >
@@ -134,10 +138,14 @@ export default function DailyBestSells() {
           {/* Карточки — сдвигаем через translateX */}
           <div
             className="flex gap-4 transition-transform duration-300"
-            style={{ transform: `translateX(calc(-${sliderIndex * (208 + 16)}px))` }}
+            style={{
+              transform: `translateX(calc(-${sliderIndex * (208 + 16)}px))`,
+            }}
           >
             {isLoading
-              ? Array.from({ length: VISIBLE }).map((_, i) => <SliderSkeleton key={i} />)
+              ? Array.from({ length: VISIBLE }).map((_, i) => (
+                  <SliderSkeleton key={i} />
+                ))
               : products.map((product) => (
                   <DailyProductCard key={product.id} product={product} />
                 ))}
@@ -145,12 +153,13 @@ export default function DailyBestSells() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 /** Карточка товара в слайдере Daily Best Sells */
 function DailyProductCard({ product }) {
-  const { id, name, price, old_price, image_url, badge, rating, sold_count } = product
+  const { id, name, price, old_price, image_url, badge, rating, sold_count } =
+    product;
 
   return (
     <Link
@@ -177,8 +186,10 @@ function DailyProductCard({ product }) {
       </div>
 
       {/* Название */}
-      <p className="text-sm font-medium text-gray-800 line-clamp-2 mb-1
-                    group-hover:text-[#E44B26] transition-colors flex-1">
+      <p
+        className="text-sm font-medium text-gray-800 line-clamp-2 mb-1
+                    group-hover:text-[#E44B26] transition-colors flex-1"
+      >
         {name}
       </p>
 
@@ -189,7 +200,9 @@ function DailyProductCard({ product }) {
       <div className="flex items-center gap-2 my-2">
         <span className="text-[#E44B26] font-bold">${price}</span>
         {old_price && (
-          <span className="text-gray-400 text-xs line-through">${old_price}</span>
+          <span className="text-gray-400 text-xs line-through">
+            ${old_price}
+          </span>
         )}
       </div>
 
@@ -210,7 +223,10 @@ function DailyProductCard({ product }) {
 
       {/* Кнопка в корзину */}
       <button
-        onClick={(e) => { e.preventDefault(); e.stopPropagation() }}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
         className="w-full flex items-center justify-center gap-1.5
                    border border-[#E44B26] text-[#E44B26] hover:bg-[#E44B26]
                    hover:text-white text-xs py-2 rounded transition-colors"
@@ -219,5 +235,5 @@ function DailyProductCard({ product }) {
         Add To Cart
       </button>
     </Link>
-  )
+  );
 }

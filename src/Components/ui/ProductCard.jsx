@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
-import useCartStore from "../../store/cartStore";
+import useCartStore from "../../Store/cartStore";
 
 /**
  * Карточка товара — стиль по макету:

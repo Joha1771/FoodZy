@@ -10,7 +10,7 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
-import useCartStore from "../../store/cartStore";
+import useCartStore from "../../Store/cartStore";
 import logo from "../../assets/icons/logo.svg";
 
 /**
