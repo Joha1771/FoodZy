@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProductById, fetchPopularProducts } from "../api/products";
-import ProductCard from "../components/ui/ProductCard";
+import ProductCard from "../Components/Ui/ProductCard";
 import Breadcrumb from "../components/ui/Breadcrumb";
 import useCartStore from "../store/cartStore";
 
