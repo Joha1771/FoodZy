@@ -6,15 +6,15 @@ import Layout from "../Components/Layout/Layout.jsx";
  * Все страницы грузятся лениво (lazy) — меньше начальный бандл.
  * Suspense показывает минимальный спиннер пока страница загружается.
  */
-const Home = lazy(() => import("../pages/Home.jsx"));
-const Shop = lazy(() => import("../pages/Shop.jsx"));
-const ProductDetail = lazy(() => import("../pages/ProductDetail.jsx"));
-const Cart = lazy(() => import("../pages/Cart.jsx"));
-const Checkout = lazy(() => import("../pages/Checkout.jsx"));
-const BlogList = lazy(() => import("../pages/BlogList.jsx"));
-const BlogDetail = lazy(() => import("../pages/BlogDetail.jsx"));
-const FAQ = lazy(() => import("../pages/FAQ.jsx"));
-const NotFound = lazy(() => import("../pages/NotFound.jsx"));
+const Home = lazy(() => import("../Pages/Home.jsx"));
+const Shop = lazy(() => import("../Pages/Shop.jsx"));
+const ProductDetail = lazy(() => import("../Pages/ProductDetail.jsx"));
+const Cart = lazy(() => import("../Pages/Cart.jsx"));
+const Checkout = lazy(() => import("../Pages/Checkout.jsx"));
+const BlogList = lazy(() => import("../Pages/BlogList.jsx"));
+const BlogDetail = lazy(() => import("../Pages/BlogDetail.jsx"));
+const FAQ = lazy(() => import("../Pages/FAQ.jsx"));
+const NotFound = lazy(() => import("../Pages/NotFound.jsx"));
 
 // Простой fallback на время загрузки страницы
 function PageLoader() {
