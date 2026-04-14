@@ -1,11 +1,11 @@
-import HeroSection      from '../components/sections/HeroSection'
-import BannerSection    from '../components/sections/BannerSection'
-import PopularProducts  from '../components/sections/PopularProducts'
-import DailyBestSells   from '../components/sections/DailyBestSells'
-import DealsOfTheDay    from '../components/sections/DealsOfTheDay'
-import TopListsSection  from '../components/sections/TopListsSection'
-import NewsletterBanner from '../components/sections/NewsletterBanner'
-import FeaturesStrip    from '../components/sections/FeaturesStrip'
+import HeroSection from "../Components/sections/HeroSection";
+import BannerSection from "../Components/sections/BannerSection";
+import PopularProducts from "../Components/sections/PopularProducts";
+import DailyBestSells from "../Components/sections/DailyBestSells";
+import DealsOfTheDay from "../Components/sections/DealsOfTheDay";
+import TopListsSection from "../Components/sections/TopListsSection";
+import NewsletterBanner from "../Components/sections/NewsletterBanner";
+import FeaturesStrip from "../Components/sections/FeaturesStrip";
 
 /**
  * Главная страница.
@@ -23,5 +23,5 @@ export default function Home() {
       <NewsletterBanner />
       <FeaturesStrip />
     </>
-  )
+  );
 }
