@@ -3,7 +3,7 @@ import { Trash2, ShoppingBag } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPopularProducts } from "../Api/products";
 import ProductCard from "../Components/Ui/ProductCard";
-import Breadcrumb from "../components/ui/Breadcrumb";
+import Breadcrumb from "../Components/Ui/Breadcrumb";
 import useCartStore from "../Store/cartStore";
 
 export default function Cart() {

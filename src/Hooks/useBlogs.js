@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchBlogs, fetchBlogById } from '../api/blogs'
+import { fetchBlogs, fetchBlogById } from '../Api/blogs'
 import { QUERY_KEYS } from '../constants/queryKeys'
 
 export function useBlogs(params = {}) {

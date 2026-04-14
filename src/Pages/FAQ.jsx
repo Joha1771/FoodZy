@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import Breadcrumb from "../components/ui/Breadcrumb";
+import Breadcrumb from "../Components/Ui/Breadcrumb";
 import faqImage from "../assets/images/Faq-image.png";
 
 const FAQ_ITEMS = [

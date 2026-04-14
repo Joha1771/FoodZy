@@ -8,10 +8,10 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProductById, fetchPopularProducts } from "../api/products";
+import { fetchProductById, fetchPopularProducts } from "../Api/products";
 import ProductCard from "../Components/Ui/ProductCard";
-import Breadcrumb from "../components/ui/Breadcrumb";
-import useCartStore from "../store/cartStore";
+import Breadcrumb from "../Components/Ui/Breadcrumb";
+import useCartStore from "../Store/cartStore";
 
 const TABS = ["Description", "Information", "Review"];
 

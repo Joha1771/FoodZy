@@ -1,8 +1,8 @@
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useBlogs } from "../hooks/useBlogs";
-import Breadcrumb from "../components/ui/Breadcrumb";
-import Pagination from "../components/ui/Pagination";
+import { useBlogs } from "../Hooks/useBlogs";
+import Breadcrumb from "../Components/Ui/Breadcrumb";
+import Pagination from "../Components/Ui/Pagination";
 
 // Статичные данные блога (пока нет таблицы blogs в Supabase)
 const BLOG_POSTS = [

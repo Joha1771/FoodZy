@@ -11,8 +11,8 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../Api/products";
 import { fetchCategories } from "../Api/categories";
 import ProductCard from "../Components/Ui/ProductCard";
-import Pagination from "../components/ui/Pagination";
-import Breadcrumb from "../components/ui/Breadcrumb";
+import Pagination from "../Components/Ui/Pagination";
+import Breadcrumb from "../Components/Ui/Breadcrumb";
 import useCartStore from "../Store/cartStore";
 
 const SORT_OPTIONS = [

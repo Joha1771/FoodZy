@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import Breadcrumb from "../components/ui/Breadcrumb";
-import Pagination from "../components/ui/Pagination";
+import Breadcrumb from "../Components/Ui/Breadcrumb";
+import Pagination from "../Components/Ui/Pagination";
 
 // Статичные данные (пока нет таблицы blogs)
 const POST = {
