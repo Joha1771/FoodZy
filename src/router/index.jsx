@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import Layout from "../components/Layout/Layout";
+import Layout from "../Components/Layout/Layout";
 
 /**
  * Все страницы грузятся лениво (lazy) — меньше начальный бандл.
