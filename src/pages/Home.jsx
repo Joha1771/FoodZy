@@ -1,11 +1,11 @@
-import HeroSection from "../Components/sections/HeroSection";
-import BannerSection from "../Components/sections/BannerSection";
-import PopularProducts from "../Components/sections/PopularProducts";
-import DailyBestSells from "../Components/sections/DailyBestSells";
-import DealsOfTheDay from "../Components/sections/DealsOfTheDay";
-import TopListsSection from "../Components/sections/TopListsSection";
-import NewsletterBanner from "../Components/sections/NewsletterBanner";
-import FeaturesStrip from "../Components/sections/FeaturesStrip";
+import HeroSection from "../Components/Sections/HeroSection";
+import BannerSection from "../Components/Sections/BannerSection";
+import PopularProducts from "../Components/Sections/PopularProducts";
+import DailyBestSells from "../Components/Sections/DailyBestSells";
+import DealsOfTheDay from "../Components/Sections/DealsOfTheDay";
+import TopListsSection from "../Components/Sections/TopListsSection";
+import NewsletterBanner from "../Components/Sections/NewsletterBanner";
+import FeaturesStrip from "../Components/Sections/FeaturesStrip";
 
 /**
  * Главная страница.
