@@ -1,26 +1,29 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import Layout from "../Components/Layout/Layout";
+import Layout from "../Components/Layout/Layout.jsx";
 
 /**
  * Все страницы грузятся лениво (lazy) — меньше начальный бандл.
  * Suspense показывает минимальный спиннер пока страница загружается.
  */
-const Home = lazy(() => import("../pages/Home"));
-const Shop = lazy(() => import("../pages/Shop"));
-const ProductDetail = lazy(() => import("../pages/ProductDetail"));
-const Cart = lazy(() => import("../pages/Cart"));
-const Checkout = lazy(() => import("../pages/Checkout"));
-const BlogList = lazy(() => import("../pages/BlogList"));
-const BlogDetail = lazy(() => import("../pages/BlogDetail"));
-const FAQ = lazy(() => import("../pages/FAQ"));
-const NotFound = lazy(() => import("../pages/NotFound"));
+const Home = lazy(() => import("../pages/Home.jsx"));
+const Shop = lazy(() => import("../pages/Shop.jsx"));
+const ProductDetail = lazy(() => import("../pages/ProductDetail.jsx"));
+const Cart = lazy(() => import("../pages/Cart.jsx"));
+const Checkout = lazy(() => import("../pages/Checkout.jsx"));
+const BlogList = lazy(() => import("../pages/BlogList.jsx"));
+const BlogDetail = lazy(() => import("../pages/BlogDetail.jsx"));
+const FAQ = lazy(() => import("../pages/FAQ.jsx"));
+const NotFound = lazy(() => import("../pages/NotFound.jsx"));
 
 // Простой fallback на время загрузки страницы
 function PageLoader() {
   return (
     <div className="flex items-center justify-center min-h-[50vh]">
-      <div className="w-8 h-8 border-2 border-[#E44B26] border-t-transparent rounded-full animate-spin" />
+      <div
+        className="w-8 h-8 border-2 border-[#E44B26] border-t-transparent rounded-full animate-spin
+      "
+      />
     </div>
   );
 }
