@@ -18,11 +18,11 @@ const TABS = ["Featured", "Popular", "New added"];
 // Скелетон для карточки товара в слайдере
 function SliderSkeleton() {
   return (
-    <div className="flex-shrink-0 w-52 border border-gray-100 rounded-lg p-3 animate-pulse">
-      <div className="h-32 bg-gray-100 rounded mb-3" />
-      <div className="h-3 bg-gray-100 rounded w-2/3 mb-2" />
-      <div className="h-4 bg-gray-100 rounded w-1/2 mb-2" />
-      <div className="h-3 bg-gray-100 rounded w-1/3 mb-3" />
+    <div className="flex-shrink-0 p-3 border border-gray-100 rounded-lg w-52 animate-pulse">
+      <div className="h-32 mb-3 bg-gray-100 rounded" />
+      <div className="w-2/3 h-3 mb-2 bg-gray-100 rounded" />
+      <div className="w-1/2 h-4 mb-2 bg-gray-100 rounded" />
+      <div className="w-1/3 h-3 mb-3 bg-gray-100 rounded" />
       <div className="h-8 bg-gray-100 rounded" />
     </div>
   );
@@ -52,7 +52,7 @@ export default function DailyBestSells() {
   return (
     <section className="max-w-[1200px] mx-auto px-4 py-10">
       {/* Заголовок + табы */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col justify-between gap-4 mb-6 sm:flex-row sm:items-center">
         <h2 className="text-2xl font-bold text-gray-900">Daily Best Sells</h2>
 
         <div className="flex gap-4">
@@ -85,7 +85,7 @@ export default function DailyBestSells() {
                      bg-gray-900 text-white p-6 min-w-[220px] max-w-[220px] relative"
         >
           <div>
-            <h3 className="text-xl font-bold leading-snug mb-3">
+            <h3 className="mb-3 text-xl font-bold leading-snug">
               Bring nature
               <br />
               into your
@@ -103,12 +103,12 @@ export default function DailyBestSells() {
           <img
             src={dailyBestSellsImg}
             alt="Daily Best Sells"
-            className="mt-4 rounded-lg object-cover w-full h-36"
+            className="object-cover w-full mt-4 rounded-lg h-36"
           />
         </div>
 
         {/* ── Слайдер карточек ── */}
-        <div className="flex-1 relative overflow-hidden">
+        <div className="relative flex-1 overflow-hidden">
           {/* Кнопки навигации */}
           {canPrev && (
             <button
@@ -164,8 +164,7 @@ function DailyProductCard({ product }) {
   return (
     <Link
       to={`/product/${id}`}
-      className="flex-shrink-0 w-52 border border-gray-100 rounded-lg p-3
-                 hover:shadow-md transition-shadow group flex flex-col"
+      className="flex flex-col flex-shrink-0 p-3 transition-shadow border border-gray-100 rounded-lg w-52 hover:shadow-md group"
     >
       {/* Бейдж */}
       {badge && (
@@ -175,12 +174,11 @@ function DailyProductCard({ product }) {
       )}
 
       {/* Изображение */}
-      <div className="h-32 flex items-center justify-center bg-gray-50 rounded-lg mb-3 overflow-hidden">
+      <div className="flex items-center justify-center h-32 mb-3 overflow-hidden rounded-lg bg-gray-50">
         <img
           src={image_url}
           alt={name}
-          className="max-h-full max-w-full object-contain
-                     group-hover:scale-105 transition-transform duration-300"
+          className="object-contain max-w-full max-h-full transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
       </div>
@@ -200,7 +198,7 @@ function DailyProductCard({ product }) {
       <div className="flex items-center gap-2 my-2">
         <span className="text-[#E44B26] font-bold">${price}</span>
         {old_price && (
-          <span className="text-gray-400 text-xs line-through">
+          <span className="text-xs text-gray-400 line-through">
             ${old_price}
           </span>
         )}
@@ -209,7 +207,7 @@ function DailyProductCard({ product }) {
       {/* Прогресс продаж */}
       {sold_count !== undefined && (
         <div className="mb-2">
-          <div className="text-xs text-gray-400 mb-1">
+          <div className="mb-1 text-xs text-gray-400">
             Sold: {sold_count}/120
           </div>
           <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">

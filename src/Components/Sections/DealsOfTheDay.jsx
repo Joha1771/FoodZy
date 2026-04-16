@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import { useDeals } from "../../Hooks/useProducts";
 import StarRating from "../Ui/StarRating";
-
-// Статичные изображения для deals (если в БД нет image_url — используем дефолт)
 import deal1 from "../../assets/images/DealsOfTheDay1.png";
 import deal2 from "../../assets/images/DealsOfTheDay2.png";
 import deal3 from "../../assets/images/DealsOfTheDay3.png";
@@ -11,19 +9,13 @@ import deal4 from "../../assets/images/DealsOfTheDay4.png";
 
 const FALLBACK_IMAGES = [deal1, deal2, deal3, deal4];
 
-/**
- * Секция "Deals of the Day".
- * Четыре карточки с большими изображениями и оверлеем с информацией.
- */
-
 function SkeletonDeal() {
   return (
-    <div className="rounded-xl overflow-hidden animate-pulse">
-      <div className="h-48 bg-gray-100" />
+    <div className="flex-shrink-0 overflow-hidden rounded-xl animate-pulse snap-start w-44 sm:w-auto">
+      <div className="bg-gray-100 aspect-square" />
       <div className="p-3 space-y-2">
-        <div className="h-4 bg-gray-100 rounded w-3/4" />
-        <div className="h-3 bg-gray-100 rounded w-1/2" />
-        <div className="h-3 bg-gray-100 rounded w-1/4" />
+        <div className="w-3/4 h-4 bg-gray-100 rounded" />
+        <div className="w-1/2 h-3 bg-gray-100 rounded" />
       </div>
     </div>
   );
@@ -33,27 +25,27 @@ export default function DealsOfTheDay() {
   const { data: deals = [], isLoading } = useDeals(4);
 
   return (
-    <section className="max-w-[1200px] mx-auto px-4 py-10">
-      {/* Заголовок */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Deals Of The Day</h2>
+    <section className="max-w-[1200px] mx-auto px-4 py-8 lg:py-10">
+      <div className="flex items-center justify-between mb-5 lg:mb-6">
+        <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
+          Deals Of The Day
+        </h2>
         <Link
           to="/shop?deals=true"
-          className="text-sm text-[#E44B26] hover:underline font-medium flex items-center gap-1"
+          className="text-sm text-[#E44B26] hover:underline font-medium no-underline"
         >
           All Deals →
         </Link>
       </div>
 
-      {/* Сетка */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+      {/* Мобайл: горизонтальный скролл; md+: сетка */}
+      <div className="flex gap-4 pb-2 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-4 md:overflow-visible md:pb-0 md:gap-5">
         {isLoading
           ? Array.from({ length: 4 }).map((_, i) => <SkeletonDeal key={i} />)
           : deals.map((deal, idx) => (
               <DealCard
                 key={deal.id}
                 deal={deal}
-                // Используем fallback если нет image_url
                 fallbackImage={FALLBACK_IMAGES[idx % FALLBACK_IMAGES.length]}
               />
             ))}
@@ -69,46 +61,34 @@ function DealCard({ deal, fallbackImage }) {
   return (
     <Link
       to={`/product/${id}`}
-      className="group relative rounded-xl overflow-hidden bg-gray-50 block"
+      className="relative flex-shrink-0 block overflow-hidden no-underline group rounded-xl bg-gray-50 w-44 sm:w-auto snap-start"
     >
-      {/* Изображение */}
-      <div className="aspect-square overflow-hidden">
+      <div className="overflow-hidden aspect-square">
         <img
           src={image_url || fallbackImage}
           alt={name}
-          className="w-full h-full object-cover
-                     group-hover:scale-105 transition-transform duration-400"
+          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
       </div>
-
-      {/* Информация поверх — появляется снизу */}
-      <div className="bg-white p-3">
-        {/* Название */}
+      <div className="p-3 bg-white">
         <p
           className="text-sm font-medium text-gray-800 line-clamp-2 mb-1
                       group-hover:text-[#E44B26] transition-colors"
         >
           {name}
         </p>
-
-        {/* Бренд */}
-        {brand && <p className="text-xs text-gray-400 mb-1">By {brand}</p>}
-
-        {/* Рейтинг */}
+        {brand && <p className="mb-1 text-xs text-gray-400">By {brand}</p>}
         <StarRating rating={rating} count={review_count} />
-
-        {/* Цена + кнопка */}
         <div className="flex items-center justify-between mt-2">
           <div>
             <span className="text-[#E44B26] font-bold text-sm">${price}</span>
             {old_price && (
-              <span className="text-gray-400 text-xs line-through ml-1">
+              <span className="ml-1 text-xs text-gray-400 line-through">
                 ${old_price}
               </span>
             )}
           </div>
-
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -116,7 +96,6 @@ function DealCard({ deal, fallbackImage }) {
             }}
             className="flex items-center gap-1 bg-[#E44B26] hover:bg-[#c93f1e]
                        text-white text-xs px-3 py-1.5 rounded transition-colors"
-            aria-label={`Add ${name} to cart`}
           >
             <ShoppingCart size={12} />
             Add

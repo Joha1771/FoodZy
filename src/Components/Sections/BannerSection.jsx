@@ -3,10 +3,6 @@ import banner1 from "../../assets/images/HomeCategory1.png";
 import banner2 from "../../assets/images/HomeCategory2.png";
 import banner3 from "../../assets/images/HomeCategory3.png";
 
-/**
- * Три рекламных баннера под hero.
- * Каждый ведёт в каталог с нужной категорией.
- */
 const BANNERS = [
   {
     id: 1,
@@ -33,35 +29,34 @@ const BANNERS = [
 
 export default function BannerSection() {
   return (
-    <section className="max-w-[1200px] mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <section className="max-w-[1200px] mx-auto px-4 py-6 lg:py-8">
+      {/* Мобайл: горизонтальный скролл */}
+      <div className="flex gap-4 pb-2 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
         {BANNERS.map((banner) => (
           <div
             key={banner.id}
-            className="relative rounded-xl overflow-hidden flex items-center justify-between px-6 py-6 min-h-[200px] group"
-            style={{ backgroundColor: banner.bg }}
+            className="relative rounded-xl overflow-hidden flex items-center justify-between
+                       px-5 py-5 group flex-shrink-0 w-[75vw] sm:w-[60vw] snap-start
+                       md:w-auto"
+            style={{ backgroundColor: banner.bg, minHeight: 160 }}
           >
-            {/* Текст + кнопка */}
-            <div className="z-10 flex-1 pr-4">
-              <p className="font-semibold text-gray-800 text-sm leading-snug mb-3 max-w-[140px]">
+            <div className="z-10 flex-1 pr-3">
+              <p className="font-semibold text-gray-800 text-xs sm:text-sm leading-snug mb-3 max-w-[130px]">
                 {banner.title}
               </p>
               <Link
                 to={banner.to}
                 className="inline-block bg-[#E44B26] hover:bg-[#c93f1e] text-white
-                           text-xs px-4 py-2 rounded transition-colors font-medium"
+                           text-xs px-3 py-1.5 rounded transition-colors font-medium no-underline"
               >
                 Shop Now
               </Link>
             </div>
-
-            {/* Картинка */}
-            <div className="flex-shrink-0 w-full flex items-center justify-end absolute right-0 top-1/2 transform -translate-y-1/2">
+            <div className="absolute right-0 flex items-center flex-shrink-0 h-full -translate-y-1/2 top-1/2">
               <img
                 src={banner.image}
                 alt={banner.title}
-                className="max-h-full max-w-full object-contain
-                           group-hover:scale-105 transition-transform duration-300"
+                className="object-contain transition-transform duration-300  group-hover:scale-105"
               />
             </div>
           </div>

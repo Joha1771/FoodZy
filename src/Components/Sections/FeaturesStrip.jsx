@@ -4,10 +4,6 @@ import features3 from "../../assets/icons/features3.svg";
 import features4 from "../../assets/icons/features4.svg";
 import features5 from "../../assets/icons/features5.svg";
 
-/**
- * Полоска преимуществ (под footer верхним блоком).
- * Best prices / Free delivery / Great daily deal / Wide assortment / Easy returns
- */
 const FEATURES = [
   {
     icon: features1,
@@ -26,15 +22,21 @@ const FEATURES = [
 
 export default function FeaturesStrip() {
   return (
-    <section className="border-y border-gray-100 bg-white">
+    <section className="bg-white border-gray-100 border-y">
       <div className="max-w-[1200px] mx-auto px-4 py-5">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        {/* Мобайл: горизонтальный скролл; md+: сетка */}
+        <div className="flex gap-3 pb-1 overflow-x-auto scrollbar-hide md:grid md:grid-cols-5 md:overflow-visible md:pb-0 md:gap-4">
           {FEATURES.map((f) => (
             <div
               key={f.title}
-              className="flex items-center gap-3 cursor-pointer hover:scale-105 rounded-lg px-3 py-2 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg flex-shrink-0
+                         hover:bg-gray-50 transition-colors cursor-pointer min-w-[160px] md:min-w-0"
             >
-              <img src={f.icon} alt={f.title} className=" flex-shrink-0" />
+              <img
+                src={f.icon}
+                alt={f.title}
+                className="flex-shrink-0 w-full"
+              />
             </div>
           ))}
         </div>

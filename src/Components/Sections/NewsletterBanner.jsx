@@ -22,7 +22,7 @@ export default function NewsletterBanner() {
       >
         {/* Декоративный паттерн */}
         <div
-          className="absolute inset-0 opacity-5 pointer-events-none"
+          className="absolute inset-0 pointer-events-none opacity-5"
           style={{
             backgroundImage:
               "radial-gradient(circle, #3BB77E 1px, transparent 1px)",
@@ -32,7 +32,7 @@ export default function NewsletterBanner() {
 
         {/* Текст */}
         <div className="relative z-10 text-center md:text-left">
-          <h2 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight mb-2">
+          <h2 className="mb-2 text-2xl font-black leading-tight text-gray-900 md:text-3xl">
             Stay home &amp; get your daily
             <br />
             needs from our shop
@@ -48,14 +48,14 @@ export default function NewsletterBanner() {
           onSubmit={handleSubmit}
           className="flex relative z-10 w-full md:max-w-[473px]"
         >
-          <div className="flex items-center bg-white border border-gray-200 rounded-l-full px-4 gap-2 flex-1 md:w-64">
+          <div className="flex items-center flex-1 gap-2 px-4 bg-white border border-gray-200 rounded-l-full md:w-64">
             <svg
               width="16"
               height="16"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="text-gray-400 flex-shrink-0"
+              className="flex-shrink-0 text-gray-400"
             >
               <path
                 strokeLinecap="round"
@@ -70,7 +70,7 @@ export default function NewsletterBanner() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
               required
-              className="flex-1 py-3 text-sm bg-transparent focus:outline-none text-gray-700"
+              className="flex-1 py-3 text-sm text-gray-700 bg-transparent focus:outline-none"
             />
           </div>
           <button
@@ -86,7 +86,7 @@ export default function NewsletterBanner() {
         <img
           src={newsletterImg}
           alt="Delivery"
-          className="hidden xl:block absolute right-10 bottom-0 h-60  pointer-events-none"
+          className="absolute bottom-0 hidden pointer-events-none xl:block right-10 h-60"
         />
       </div>
     </section>

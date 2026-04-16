@@ -3,20 +3,21 @@ import { usePopularProducts } from "../../Hooks/useProducts";
 import { useCategories } from "../../Hooks/useCategories";
 import ProductCard from "../Ui/ProductCard";
 
-/**
- * Секция Popular Products.
- * Табы — реальные категории из таблицы categories.
- * Фильтрация на клиенте по categories.name из join-поля.
- */
-
 function SkeletonCard() {
   return (
-    <div className="rounded-lg border border-gray-100 overflow-hidden animate-pulse">
-      <div className="h-44 bg-gray-100" />
-      <div className="p-3 space-y-2">
-        <div className="h-3 bg-gray-100 rounded w-1/3" />
-        <div className="h-4 bg-gray-100 rounded w-2/3" />
-        <div className="h-3 bg-gray-100 rounded w-1/4" />
+    <div
+      style={{
+        borderRadius: 8,
+        border: "1px solid #e8e8e8",
+        overflow: "hidden",
+      }}
+      className="animate-pulse"
+    >
+      <div style={{ height: 190, background: "#f8f8f8" }} />
+      <div style={{ padding: "0.875rem 1rem" }} className="space-y-2">
+        <div className="w-1/3 h-3 bg-gray-100 rounded" />
+        <div className="w-2/3 h-4 bg-gray-100 rounded" />
+        <div className="w-1/4 h-3 bg-gray-100 rounded" />
         <div className="h-8 bg-gray-100 rounded" />
       </div>
     </div>
@@ -26,15 +27,11 @@ function SkeletonCard() {
 export default function PopularProducts() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  // Все featured товары
   const { data: products = [], isLoading } = usePopularProducts(20);
-
-  // Категории для табов
   const { data: categories = [] } = useCategories();
 
   const tabs = ["All", ...categories.map((c) => c.name)];
 
-  // Фильтр по categories.name (приходит из join)
   const filtered =
     activeCategory === "All"
       ? products
@@ -42,22 +39,31 @@ export default function PopularProducts() {
 
   return (
     <section className="max-w-[1200px] mx-auto px-4 py-10">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Popular Products</h2>
+      <div className="flex flex-col justify-between gap-4 mb-6 sm:flex-row sm:items-center">
+        <h2 style={{ fontSize: "1.75rem", fontWeight: 700, color: "#1a1a1a" }}>
+          Popular Products
+        </h2>
 
-        <div className="flex flex-wrap gap-1">
+        {/* Pill кнопки как в Foodzy */}
+        <div className="flex flex-wrap gap-1.5">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveCategory(tab)}
-              className={`
-                px-3 py-1 text-sm rounded transition-colors
-                ${
+              style={{
+                padding: "4px 14px",
+                borderRadius: "20px",
+                fontSize: "0.8rem",
+                fontWeight: activeCategory === tab ? 600 : 400,
+                border:
                   activeCategory === tab
-                    ? "text-[#E44B26] font-semibold border-b-2 border-[#E44B26]"
-                    : "text-gray-500 hover:text-gray-800"
-                }
-              `}
+                    ? "1px solid #E44B26"
+                    : "1px solid #e8e8e8",
+                background: activeCategory === tab ? "#E44B26" : "#fff",
+                color: activeCategory === tab ? "#fff" : "#7a7a7a",
+                cursor: "pointer",
+                transition: "all 0.2s",
+              }}
             >
               {tab}
             </button>
@@ -65,7 +71,7 @@ export default function PopularProducts() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {isLoading
           ? Array.from({ length: 10 }).map((_, i) => <SkeletonCard key={i} />)
           : filtered.map((product) => (
@@ -74,7 +80,7 @@ export default function PopularProducts() {
       </div>
 
       {!isLoading && filtered.length === 0 && (
-        <p className="text-center text-gray-400 py-12">No products found.</p>
+        <p className="py-12 text-center text-gray-400">No products found.</p>
       )}
     </section>
   );
